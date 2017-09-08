@@ -18,9 +18,9 @@
     - geerlingguy.git
     - geerlingguy.nodejs
     - geerlingguy.pip
-    - geerlingguy.ansible
+    - name: geerlingguy.ansible
       when: not prebuild_test_mode
-    - geerlingguy.docker
+    - name: geerlingguy.docker
       when: not prebuild_test_mode
 
   tasks:
