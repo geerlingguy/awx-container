@@ -23,8 +23,8 @@ Currently maintained versions include:
 
 If you just want to get an AWX environment running quickly, you can use the `docker-compose.yml` file included with this project to build a local environment accessible on `http://localhost:80/`:
 
-    mkdir awx-test && cd awx_test
-    curl https://raw.githubusercontent.com/geerlingguy/awx-container/master/docker-compose.yml
+    mkdir awx-test && cd awx-test
+    curl -O https://raw.githubusercontent.com/geerlingguy/awx-container/master/docker-compose.yml
     docker-compose up -d
 
 The Docker Compose file uses community images for `postgres`, `rabbitmq`, and `memcached`, and the following images for AWX:
