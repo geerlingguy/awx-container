@@ -9,7 +9,8 @@ python:
 
 install:
   # Install requirements.
-  - pip install ansible python-apt
+  - sudo apt-get install python-apt
+  - pip install ansible
   - pip install -r ansible-requirements.txt
 
   # Install ansible-container.
