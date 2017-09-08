@@ -9,6 +9,7 @@ python:
 
 install:
   # Install requirements.
+  - pip install ansible
   - pip install -r ansible-requirements.txt
 
   # Install ansible-container.

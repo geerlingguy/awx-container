@@ -18,11 +18,17 @@ Currently maintained versions include:
 
 ## Standalone Usage
 
-If you want to use the `geerlingguy/awx` image from Docker Hub, you don't need to install or use this project at all. You can quickly build an AWX container locally with:
+If you want to use the prebuilt AWX images from Docker Hub, you don't need to install or use this project at all. You can quickly build AWX containers locally with:
 
-    docker run -d --name=awx -p 80:80 geerlingguy/awx:latest TODO
+    # AWX web container:
+    docker run -d --name=awx_web -p 80:8052 geerlingguy/awx_web:latest
+    
+    # AWX task container:
+    docker run -d --name=awx_task geerlingguy/awx_task:latest
 
-Now you should be able to access the AWX interface at `http://localhost/`.
+TODO: Just suggest docker-compose file instead since these require the other services be up and running?
+
+Then you should be able to access the AWX interface at `http://localhost/`.
 
 ## Management with Ansible Container
 
@@ -68,8 +74,6 @@ You should be able to reach AWX by accessing [http://localhost/](http://localhos
 
 ### Push the containers to Docker Hub
 
-TODO: Update this section!
-
 Currently, the process for updating this image on Docker Hub is manual. Eventually this will be automated via Travis CI using `ansible-container push` (currently, this is waiting on [this issue](https://github.com/ansible/ansible-container/issues/630) to be resolved).
 
   1. Log into Docker Hub on the command line:
@@ -78,18 +82,13 @@ Currently, the process for updating this image on Docker Hub is manual. Eventual
 
   1. Tag the latest version (only if this is the latest/default version):
 
-         docker tag [image id] geerlingguy/solr:latest
-
-  1. Tag the Solr major version:
-
-         docker tag [image id] geerlingguy/solr:6.x # or 5.x, 4.x, 3.x...
-         docker tag [image id] geerlingguy/solr:6.6.0 # the specific version
+         docker tag [image id] geerlingguy/awx:latest
+         docker tag [image id] geerlingguy/awx:1.x
 
   1. Push tags to Docker Hub:
 
-         docker push geerlingguy/solr:latest # (if this was just tagged)
-         docker push geerlingguy/solr:6.x # or 5.x, 4.x, 3.x...
-         docker push geerlingguy/solr:6.6.0 # the specific version
+         docker push geerlingguy/awx:latest # (if this was just tagged)
+         docker push geerlingguy/awx:1.x
 
 ## License
 
