@@ -5,6 +5,10 @@
     chdir: "{{ awx_repo_dir }}"
   register: awx_git_version_command
 
+- name: Debug the git describe results (in test mode).
+  debug: var=awx_git_version_command
+  when: prebuild_test_mode
+
 - name: Set awx git-derived version and sdist filename.
   set_fact:
     awx_version: "{{ awx_git_version_command.stdout }}"
