@@ -24,7 +24,7 @@ install:
 script:
   - cd prebuild
   - ansible-galaxy install -r requirements.yml
-  - ansible-playbook -e ansible_python_interpreter=/usr/bin/python prebuild.yml
+  - ansible-playbook -e ansible_python_interpreter=/usr/bin/python -e prebuild_test_mode=True prebuild.yml
   - cd ..
   - ansible-container --debug --var-file config.yml build
 

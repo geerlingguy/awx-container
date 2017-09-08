@@ -16,10 +16,12 @@
     - name: geerlingguy.repo-epel
       when: ansible_os_family == "RedHat"
     - geerlingguy.git
-    - geerlingguy.ansible
-    - geerlingguy.docker
-    - geerlingguy.pip
     - geerlingguy.nodejs
+    - geerlingguy.pip
+    - geerlingguy.ansible
+      when: not prebuild_test_mode
+    - geerlingguy.docker
+      when: not prebuild_test_mode
 
   tasks:
     - name: Include OS-specific variables.

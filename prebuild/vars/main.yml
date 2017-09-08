@@ -1,4 +1,6 @@
 ---
+prebuild_test_mode: False
+
 awx_repo: https://github.com/ansible/awx.git
 awx_repo_dir: "/opt/awx"
 awx_repo_version: devel
