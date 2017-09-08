@@ -19,19 +19,20 @@ Currently maintained versions include:
   - `geerlingguy/awx_task`:
     - `1.x`, `latest`: AWX 1.x
 
-## Standalone Usage
+## Quickstart - Standalone Usage with Docker Compose
 
-If you want to use the prebuilt AWX images from Docker Hub, you don't need to install or use this project at all. You can quickly build AWX containers locally with:
+If you just want to get an AWX environment running quickly, you can use the `docker-compose.yml` file included with this project to build a local environment accessible on `http://localhost:80/`:
 
-    # AWX web container:
-    docker run -d --name=awx_web -p 80:8052 geerlingguy/awx_web:latest
-    
-    # AWX task container:
-    docker run -d --name=awx_task geerlingguy/awx_task:latest
+    mkdir awx-test && cd awx_test
+    curl https://raw.githubusercontent.com/geerlingguy/awx-container/master/docker-compose.yml
+    docker-compose up -d
 
-TODO: Just suggest docker-compose file instead since these require the other services be up and running?
+The Docker Compose file uses community images for `postgres`, `rabbitmq`, and `memcached`, and the following images for AWX:
 
-Then you should be able to access the AWX interface at `http://localhost/`.
+  - [`geerlingguy/awx_web`](https://hub.docker.com/r/geerlingguy/awx_web/)
+  - [`geerlingguy/awx_task`](https://hub.docker.com/r/geerlingguy/awx_task/)
+
+After the initial database migration completes (this can take a few minutes; follow the progress with `docker logs -f [id-of-awx_task-container]`), you can able to access the AWX interface at `http://localhost/`. The default login is `admin`/`password`.
 
 ## Management with Ansible Container
 
