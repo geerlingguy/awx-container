@@ -47,10 +47,19 @@
     src: "{{ awx_image_build_path }}/templates/Dockerfile.j2"
     dest: "{{ docker_base_path }}/Dockerfile"
 
+- name: Temporarily set awx_version for task Dockerfile to work.
+  set_fact:
+    awx_version_backup: "{{ awx_version }}"
+    awx_version: "{{ awx_repo_version }}"
+
 - name: Create task Dockerfile from template.
   template:
     src: "{{ awx_image_build_path }}/templates/Dockerfile.task.j2"
     dest: "{{ docker_base_path }}/Dockerfile.task"
+
+- name: Set awx_version back to normal.
+  set_fact:
+    awx_version: "{{ awx_version_backup }}"
 
 - name: Stage some configuration files.
   copy:
