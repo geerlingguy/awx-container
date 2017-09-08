@@ -16,10 +16,14 @@ install:
   - cd ansible-container
   - pip install -e .[docker]
   - cd ..
-  # (Source build required until 0.9.2 is released.)
+  # (Source build required until 0.9.2+ is released.)
   # - pip install ansible-container[docker]
 
 script:
+  - cd prebuild
+  - ansible-galaxy install -r requirements.yml
+  - ansible-playbook prebuild.yml
+  - cd ..
   - ansible-container --debug --var-file config.yml build
 
 notifications:
