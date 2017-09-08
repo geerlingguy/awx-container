@@ -1,0 +1,75 @@
+version: "2"
+settings:
+  conductor_base: alpine:latest
+
+services:
+  postgres:
+    from: "postgres:9.6"
+    roles: []
+    environment:
+      - "POSTGRES_USER={{ pg_username }}"
+      - "POSTGRES_PASSWORD={{ pg_password }}"
+      - "POSTGRES_DB={{ pg_database }}"
+
+  rabbitmq:
+    from: "rabbitmq:3"
+    roles: []
+    environment:
+      - "RABBITMQ_DEFAULT_VHOST=awx"
+
+  memcached:
+    from: "memcached:alpine"
+    roles: []
+
+  awx_web:
+    from: "awx_web:{{ awx_repo_version }}"
+    ports:
+      - "{{ awx_host_port }}:8052"
+    hostname: awxweb
+    links:
+      - rabbitmq
+      - memcached
+      - postgres
+    environment:
+      - "SECRET_KEY={{ awx_secret_key }}"
+      - "DATABASE_USER={{ pg_username }}"
+      - "DATABASE_PASSWORD={{ pg_password }}"
+      - "DATABASE_NAME={{ pg_database }}"
+      - "DATABASE_PORT={{ pg_port }}"
+      - "DATABASE_HOST=postgres"
+      - "RABBITMQ_USER=guest"
+      - "RABBITMQ_PASSWORD=guest"
+      - "RABBITMQ_HOST=rabbitmq"
+      - "RABBITMQ_PORT=5672"
+      - "RABBITMQ_VHOST=awx"
+      - "MEMCACHED_HOST=memcached"
+      - "MEMCACHED_PORT=11211"
+
+  awx_task:
+    from: "awx_task:{{ awx_repo_version }}"
+    links:
+      - rabbitmq
+      - memcached
+      - awx_web
+      - postgres
+    hostname: awx
+    environment:
+      - "SECRET_KEY={{ awx_secret_key }}"
+      - "DATABASE_USER={{ pg_username }}"
+      - "DATABASE_PASSWORD={{ pg_password }}"
+      - "DATABASE_NAME={{ pg_database }}"
+      - "DATABASE_HOST=postgres"
+      - "DATABASE_PORT={{ pg_port }}"
+      - "RABBITMQ_USER=guest"
+      - "RABBITMQ_PASSWORD=guest"
+      - "RABBITMQ_HOST=rabbitmq"
+      - "RABBITMQ_PORT=5672"
+      - "RABBITMQ_VHOST=awx"
+      - "MEMCACHED_HOST=memcached"
+      - "MEMCACHED_PORT=11211"
+
+registries:
+  docker:
+    url: https://docker.io
+    namespace: geerlingguy
+    repository_prefix: ''

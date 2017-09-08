@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Jeff Geerling
+  description: Ansible AWX container for Docker.
+  company: Midwestern Mac, LLC
+  license: MIT / BSD
+
+  min_ansible_container_version: 0.9.1
+
+  galaxy_tags:
+    - awx
+    - tower
+    - docker
+    - ci
+    - cd
+    - container

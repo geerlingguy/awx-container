@@ -1,0 +1,6 @@
+---
+awx_package_dependencies:
+  - '@Development tools'
+  - gettext
+  - gcc-c++
+  - bzip2

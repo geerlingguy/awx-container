@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  become: yes
+  connection: local
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+  roles:
+    - name: geerlingguy.repo-epel
+      when: ansible_os_family == "RedHat"
+    - geerlingguy.git
+    - geerlingguy.ansible
+    - geerlingguy.docker
+    - geerlingguy.pip
+    - geerlingguy.nodejs
+
+  tasks:
+    - name: Include OS-specific variables.
+      include_vars: "vars/{{ ansible_os_family }}.yml"
+
+    - name: Install AWX dependencies.
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ awx_package_dependencies }}"
+
+    - name: Clone AWX into configured directory (shallow clone if supported).
+      git:
+        repo: "{{ awx_repo }}"
+        dest: "{{ awx_repo_dir }}"
+        version: "{{ awx_repo_version }}"
+        update: "{{ awx_keep_updated }}"
+        force: yes
+        accept_hostkey: yes
+        depth: 1
+
+    - name: Include image_build tasks (modeled after AWX installer role).
+      include: image-build.yml

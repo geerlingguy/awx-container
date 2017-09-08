@@ -1,0 +1,6 @@
+---
+awx_package_dependencies:
+  - build-essential
+  - gettext
+  - g++
+  - bzip2

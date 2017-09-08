@@ -1,0 +1,11 @@
+---
+# AWX.
+awx_host_port: 80
+awx_secret_key: aabbcc
+awx_repo_version: "devel"
+
+# PostgreSQL.
+pg_username: awx
+pg_password: awxpass
+pg_database: awx
+pg_port: 5432

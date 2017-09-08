@@ -1,0 +1,14 @@
+---
+awx_repo: https://github.com/ansible/awx.git
+awx_repo_dir: "/opt/awx"
+awx_repo_version: devel
+awx_keep_updated: yes
+awx_image_build_path: "{{ awx_repo_dir }}/installer/image_build"
+
+awx_web_image: awx_web
+awx_task_image: awx_task
+docker_base_path: "/tmp/docker-image"
+
+nodejs_version: "6.x"
+pip_install_packages:
+  - name: docker-py
