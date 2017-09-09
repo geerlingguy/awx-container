@@ -1,7 +1,6 @@
 ---
-- hosts: localhost
+- hosts: all
   become: yes
-  connection: local
 
   vars_files:
     - vars/main.yml

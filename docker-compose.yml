@@ -17,13 +17,13 @@ services:
 
   awx_web:
     image: "geerlingguy/awx_web:latest"
-    ports:
-      - "80:8052"
-    hostname: awxweb
     links:
       - rabbitmq
       - memcached
       - postgres
+    ports:
+      - "80:8052"
+    hostname: awxweb
     environment:
       SECRET_KEY: aabbcc
       DATABASE_USER: awx
