@@ -32,7 +32,7 @@
         state: present
       with_items: "{{ awx_package_dependencies }}"
 
-    - name: Clone AWX into configured directory (shallow clone if supported).
+    - name: Clone AWX into configured directory.
       git:
         repo: "{{ awx_repo }}"
         dest: "{{ awx_repo_dir }}"
@@ -40,6 +40,9 @@
         update: "{{ awx_keep_updated }}"
         force: yes
         accept_hostkey: yes
+
+    - name: Include vagrant environment setup tasks.
+      include: vagrant-setup.yml
 
     - name: Include image_build tasks (modeled after AWX installer role).
       include: image-build.yml

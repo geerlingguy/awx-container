@@ -1,0 +1,12 @@
+---
+- name: Check if we're in a Vagrant environment.
+  stat:
+    path: /vagrant
+  register: vagrant_dir_stat
+
+- name: Add vagrant user to docker group.
+  user:
+    name: vagrant
+    groups: docker
+    append: yes
+  when: vagrant_dir_stat.isdir is defined and vagrant_dir_stat.isdir

@@ -24,6 +24,7 @@ services:
     ports:
       - "80:8052"
     hostname: awxweb
+    user: root
     environment:
       SECRET_KEY: aabbcc
       DATABASE_USER: awx
@@ -47,6 +48,7 @@ services:
       - awx_web
       - postgres
     hostname: awx
+    user: root
     environment:
       SECRET_KEY: aabbcc
       DATABASE_USER: awx

@@ -15,14 +15,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # AWX build VM.
-  config.vm.define "awx" do |awx|
-    awx.vm.hostname = "awx-container.local"
-    awx.vm.network :private_network, ip: "192.168.6.68"
+  config.vm.define "awx_container" do |awx_container|
+    awx_container.vm.hostname = "awx-container.local"
+    awx_container.vm.network :private_network, ip: "192.168.6.68"
 
-    awx.vm.provision :ansible do |ansible|
-      ansible.playbook = "prebuild/prebuild.yml"
-      ansible.galaxy_role_file = "prebuild/requirements.yml"
-      ansible.galaxy_roles_path = "prebuild/roles"
+    awx_container.vm.provision :ansible_local do |ansible|
+      ansible.install_mode = "pip"
+      ansible.provisioning_path = "/vagrant/prebuild"
+      ansible.playbook = "prebuild.yml"
+      ansible.galaxy_role_file = "requirements.yml"
+      ansible.galaxy_roles_path = "roles"
       ansible.become = true
     end
   end
