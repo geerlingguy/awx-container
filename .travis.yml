@@ -27,7 +27,7 @@ script:
   # Build the two images locally.
   - cd prebuild
   - ansible-galaxy install -r requirements.yml
-  - ansible-playbook -e ansible_python_interpreter=/usr/bin/python -e prebuild_test_mode=True prebuild.yml
+  - ansible-playbook -c local -e ansible_python_interpreter=/usr/bin/python -e prebuild_test_mode=True prebuild.yml
 
   # Build all the containers with Ansible Container.
   - cd ..
