@@ -23,8 +23,6 @@ services:
 
   awx_web:
     from: "awx_web:{{ awx_repo_version }}"
-    roles:
-      - web_setup
     ports:
       - "{{ awx_host_port }}:8052"
     hostname: awxweb

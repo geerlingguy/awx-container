@@ -49,7 +49,7 @@ Typically, you would build the images as specified in the `container.yml` file u
 
     $ cd prebuild/
     $ ansible-galaxy install -r requirements.yml
-    $ ansible-playbook -c local prebuild.yml
+    $ ansible-playbook -i 'localhost,' -c local prebuild.yml
 
 After this playbook runs, you should see two new Docker images (which we'll use in the Ansible Container definition):
 
@@ -88,13 +88,16 @@ Currently, the process for updating this image on Docker Hub is manual. Eventual
 
   1. Tag the latest version (only if this is the latest/default version):
 
-         docker tag [image id] geerlingguy/awx:latest
-         docker tag [image id] geerlingguy/awx:1.x
+         docker tag [web image id] geerlingguy/awx_web:latest
+         docker tag [web image id] geerlingguy/awx_web:1.x
+         docker tag [task image id] geerlingguy/awx_task:latest
+         docker tag [task image id] geerlingguy/awx_task:1.x
 
   1. Push tags to Docker Hub:
 
          docker push geerlingguy/awx:latest # (if this was just tagged)
          docker push geerlingguy/awx:1.x
+         [etc...]
 
 ## License
 
