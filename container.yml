@@ -50,7 +50,7 @@ services:
     links:
       - rabbitmq
       - memcached
-      - awx_web
+      - awx_web:awxweb
       - postgres
     hostname: awx
     environment:
