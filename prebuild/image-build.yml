@@ -73,6 +73,8 @@
     - { name: supervisor.conf }
     - { name: supervisor_task.conf }
     - { name: settings.py }
+    - { name: ansible.repo }
+    - { name: RPM-GPG-KEY-ansible-release }
 
 - name: Stage some other files.
   copy:
