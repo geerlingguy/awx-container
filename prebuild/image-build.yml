@@ -91,14 +91,14 @@
     path: "{{ docker_base_path }}"
     dockerfile: Dockerfile
     name: "{{ awx_web_image }}"
-    tag: "{{ awx_repo_version }}"
+    tag: "{{ awx_git_version_command.stdout }}"
 
 - name: Build base task image
   docker_image:
     path: "{{ docker_base_path }}"
     dockerfile: Dockerfile.task
     name: "{{ awx_task_image }}"
-    tag: "{{ awx_repo_version }}"
+    tag: "{{ awx_git_version_command.stdout }}"
     pull: no
 
 - name: Clean docker base directory
