@@ -58,7 +58,11 @@ After this playbook runs, you should see two new Docker images (which we'll use 
     awx_task            devel               26311794058d        29 seconds ago      938MB
     awx_web             devel               3d38dccc9190        58 seconds ago      913MB
 
-> A Vagrantfile is included with this project to assist in building a clean environment with all the dependencies required to build the AWX images (in case you don't want to install everything on your local workstation!). To use it, run `vagrant up`.
+> A Vagrantfile is included with this project to assist in building a clean environment with all the dependencies required to build the AWX images (in case you don't want to install everything on your local workstation!). To use it:
+> 
+>   1. Run `vagrant up`.
+>   2. Wait for Vagrant's provisioning to complete (it will run `prebuild.yml` automatically).
+>   3. Log in with `vagrant ssh` and use `docker` or `ansible` as needed.
 
 ### Build the conductor
 
