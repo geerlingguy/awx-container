@@ -6,6 +6,10 @@ services:
       POSTGRES_USER: awx
       POSTGRES_PASSWORD: awxpass
       POSTGRES_DB: awx
+    volumes:
+      - postgresql:/var/lib/postgresql
+      # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+      - postgresql_data:/var/lib/postgresql/data
 
   rabbitmq:
     image: "rabbitmq:3"
@@ -63,3 +67,7 @@ services:
       RABBITMQ_VHOST: awx
       MEMCACHED_HOST: memcached
       MEMCACHED_PORT: 11211
+    
+volumes:
+  postgresql:
+  postgresql_data:
