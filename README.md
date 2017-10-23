@@ -16,8 +16,10 @@ Currently maintained versions include:
 
   - `geerlingguy/awx_web`:
     - `1.x`, `latest`: AWX 1.x
+    - `1.0.1`
   - `geerlingguy/awx_task`:
     - `1.x`, `latest`: AWX 1.x
+    - `1.0.1`
 
 ## Quickstart - Standalone Usage with Docker Compose
 
@@ -99,8 +101,8 @@ Currently, the process for updating this image on Docker Hub is manual. Eventual
 
   1. Push tags to Docker Hub:
 
-         docker push geerlingguy/awx:latest # (if this was just tagged)
-         docker push geerlingguy/awx:1.x
+         docker push geerlingguy/awx_web:latest # (if this was just tagged)
+         docker push geerlingguy/awx_web:1.x
          [etc...]
 
 ## License
