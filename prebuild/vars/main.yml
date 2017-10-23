@@ -13,4 +13,4 @@ docker_base_path: "/tmp/docker-image"
 
 nodejs_version: "6.x"
 pip_install_packages:
-  - name: docker-py
+  - name: docker
