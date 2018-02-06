@@ -16,10 +16,10 @@ Currently maintained versions include:
 
   - `geerlingguy/awx_web`:
     - `1.x`, `latest`: AWX 1.x
-    - `1.0.1`
+    - `1.0.3`
   - `geerlingguy/awx_task`:
     - `1.x`, `latest`: AWX 1.x
-    - `1.0.1`
+    - `1.0.3`
 
 ## Quickstart - Standalone Usage with Docker Compose
 

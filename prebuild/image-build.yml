@@ -9,22 +9,27 @@
   debug: var=awx_git_version_command
   when: prebuild_test_mode
 
-- name: Set awx git-derived version and sdist filename.
+- name: Set awx git-derived version.
   set_fact:
     awx_version: "{{ awx_git_version_command.stdout }}"
-    awx_sdist_file: "awx-{{ awx_git_version_command.stdout }}.tar.gz"
 
-- name: Stat distribution file.
-  stat:
-    path: "{{ awx_repo_dir }}/dist/{{ awx_sdist_file }}"
-  register: sdist
+- name: Check if distribution file exists.
+  shell: ls /opt/awx/dist/ | grep "^awx-.*\.tar\.gz$"
+  changed_when: False
+  failed_when: False
+  register: sdist_file
+
+- name: Set awx sdist filename (if it exists).
+  set_fact:
+    awx_sdist_file: "{{ sdist_file.stdout_lines.0 }}"
+  when: sdist_file.rc == 0
 
 - name: Clean distribution.
   shell: make clean
   args:
     chdir: "{{ awx_repo_dir }}"
   ignore_errors: yes
-  when: not sdist.stat.exists
+  when: not sdist_file.rc == 0
 
 - name: Build AWX distribution.
   shell: make sdist
@@ -37,10 +42,24 @@
     path: "{{ docker_base_path }}"
     state: directory
 
+- name: Get awx sdist filename.
+  shell: ls /opt/awx/dist/ | grep "^awx-.*\.tar\.gz$"
+  changed_when: False
+  register: sdist_file
+
+- name: Set awx sdist filename.
+  set_fact:
+    awx_sdist_file: "{{ sdist_file.stdout_lines.0 }}"
+
 - name: Stage sdist.
   copy:
     src: "{{ awx_repo_dir }}/dist/{{ awx_sdist_file }}"
     dest: "{{ docker_base_path }}/{{ awx_sdist_file }}"
+
+- name: Stage config watcher.
+  copy:
+    src: "{{ awx_repo_dir }}/tools/scripts/config-watcher"
+    dest: "{{ docker_base_path }}/config-watcher"
 
 - name: Create web Dockerfile from template.
   template:

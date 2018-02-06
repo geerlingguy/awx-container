@@ -10,6 +10,7 @@ awx_image_build_path: "{{ awx_repo_dir }}/installer/image_build"
 awx_web_image: awx_web
 awx_task_image: awx_task
 docker_base_path: "/tmp/docker-image"
+awx_sdist_file: ''
 
 nodejs_version: "6.x"
 pip_install_packages:
