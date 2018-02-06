@@ -31,10 +31,12 @@ If you just want to get an AWX environment running quickly, you can use the `doc
 
 The Docker Compose file uses community images for `postgres`, `rabbitmq`, and `memcached`, and the following images for AWX:
 
-  - [`geerlingguy/awx_web`](https://hub.docker.com/r/geerlingguy/awx_web/)
-  - [`geerlingguy/awx_task`](https://hub.docker.com/r/geerlingguy/awx_task/)
+  - [`ansible/awx_web`](https://hub.docker.com/r/ansible/awx_web/)
+  - [`ansible/awx_task`](https://hub.docker.com/r/ansible/awx_task/)
 
 After the initial database migration completes (this can take a few minutes; follow the progress with `docker logs -f [id-of-awx_task-container]`), you can able to access the AWX interface at `http://localhost/`. The default login is `admin`/`password`.
+
+> Note: Switch the image for the `awx_web` and `awx_task` containers in `docker-compose.yml` if you want to use the `geerlingguy/` maintained images rather than the ones from `ansible/`. If you're just kicking AWX's tires though, stick with the defaults.
 
 ## Management with Ansible Container
 
