@@ -96,10 +96,10 @@ Currently, the process for updating this image on Docker Hub is manual. Eventual
 
   1. Tag the latest version (only if this is the latest/default version):
 
-         docker tag [web image id] geerlingguy/awx_web:latest
-         docker tag [web image id] geerlingguy/awx_web:1.x
-         docker tag [task image id] geerlingguy/awx_task:latest
-         docker tag [task image id] geerlingguy/awx_task:1.x
+         docker tag awx_web:devel geerlingguy/awx_web:latest
+         docker tag awx_web:devel geerlingguy/awx_web:1.x
+         docker tag awx_task:devel geerlingguy/awx_task:latest
+         docker tag awx_task:devel geerlingguy/awx_task:1.x
 
   1. Push tags to Docker Hub:
 
