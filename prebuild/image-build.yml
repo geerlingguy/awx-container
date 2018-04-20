@@ -61,6 +61,7 @@
   set_fact:
     awx_version_backup: "{{ awx_version }}"
     awx_version: "{{ awx_repo_version }}"
+    web_image: "{{ awx_web_image }}"
 
 - name: Create task Dockerfile from template.
   template:
