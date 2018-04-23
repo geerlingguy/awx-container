@@ -16,10 +16,10 @@ Currently maintained versions include:
 
   - `geerlingguy/awx_web`:
     - `1.x`, `latest`: AWX 1.x
-    - `1.0.3`
+    - `1.0.5`
   - `geerlingguy/awx_task`:
     - `1.x`, `latest`: AWX 1.x
-    - `1.0.3`
+    - `1.0.5`
 
 ## Quickstart - Standalone Usage with Docker Compose
 
@@ -52,7 +52,7 @@ Before using this project to build and maintain AWX images for Docker, you need 
 Typically, you would build the images as specified in the `container.yml` file using `ansible-container --var-file config.yml build`, but in this case, since there are many dependencies bundled in the AWX repository, we will build the Docker images using a helper playbook:
 
     $ cd prebuild/
-    $ ansible-galaxy install -r requirements.yml
+    $ ansible-galaxy install -r requirements.yml --force
     $ ansible-playbook -i 'localhost,' -c local prebuild.yml
 
 After this playbook runs, you should see two new Docker images (which we'll use in the Ansible Container definition):

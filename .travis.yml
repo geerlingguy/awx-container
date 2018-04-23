@@ -11,20 +11,21 @@ install:
   - pip install ansible
   - pip install -r ansible-requirements.txt
 
-  # Install ansible-container.
-  - git clone https://github.com/ansible/ansible-container.git
-  - cd ansible-container
-  - pip install -e .[docker]
-  - cd ..
-  # (Source build required until 0.9.2+ is released.)
-  # - pip install ansible-container[docker]
+  # Install ansible-container from source.
+  # - git clone https://github.com/ansible/ansible-container.git
+  # - cd ansible-container
+  # - pip install -e .[docker]
+  # - cd ..
+
+  # Install ansible-container from pip.
+  - pip install ansible-container[docker]
 
 script:
   - set -e
 
   # Build the two images locally.
   - cd prebuild
-  - ansible-galaxy install -r requirements.yml
+  - ansible-galaxy install -r requirements.yml --force
   - ansible-playbook -i 'localhost,' -c local -e ansible_python_interpreter=/usr/bin/python -e prebuild_test_mode=True prebuild.yml
 
   # Build all the containers with Ansible Container.
