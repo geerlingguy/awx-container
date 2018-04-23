@@ -76,8 +76,6 @@ Build the conductor using `ansible-container build`:
 
 > Note: If you get any permission errors trying to generate a Docker container, make sure you're either running the commands as root or with sudo, or your user is in the `docker` group (e.g. `sudo usermod -G docker -a [user]`, then log out and log back in).
 
-> Note 2: Currently, some of the features used in this Ansible Container definition require [installing `ansible-container` from source](https://docs.ansible.com/ansible-container/installation.html#running-from-source), instead of installing the current tagged release, 0.9.1.
-
 ### Run the containers
 
     ansible-container --var-file config.yml run

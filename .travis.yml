@@ -3,9 +3,7 @@ language: python
 services: docker
 python:
   - "2.7"
-  # 3.5 should work once Ansible Container 0.9.2+ is released.
-  # See: https://github.com/ansible/ansible-container/issues/533
-  # - "3.5"
+  - "3.6"
 
 install:
   # Install requirements.
