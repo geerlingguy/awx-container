@@ -4,3 +4,4 @@ awx_package_dependencies:
   - gettext
   - g++
   - bzip2
+  - python-ldap
