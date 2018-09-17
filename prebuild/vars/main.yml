@@ -16,3 +16,6 @@ nodejs_version: "6.x"
 pip_install_packages:
   - name: docker
   - name: docker-compose
+  - name: setuptools
+    state: latest
+  - name: openshift
