@@ -80,12 +80,19 @@
   with_items:
     - { name: launch_awx.sh, mode: '0700' }
     - { name: launch_awx_task.sh, mode: '0700' }
-    - { name: nginx.conf }
     - { name: supervisor.conf }
     - { name: supervisor_task.conf }
     - { name: settings.py }
     - { name: ansible.repo }
     - { name: RPM-GPG-KEY-ansible-release }
+
+- name: Stage some configuration file for nginx.
+  copy:
+    src: "{{ awx_image_build_path }}/templates/{{ item.name }}"
+    dest: "{{ docker_base_path }}/{{ item.name }}"
+    mode: "{{ item.mode | default(omit) }}"
+  with_items:
+    - { name: nginx.conf }
 
 - name: Stage some other files.
   copy:
