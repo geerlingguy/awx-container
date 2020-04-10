@@ -1,5 +1,7 @@
 # AWX (Built with Ansible Container)
 
+> **DEPRECATED**: This project has been deprecated. Please use the [official AWX containers and docker-compose.yml file](https://github.com/ansible/awx/blob/devel/INSTALL.md#docker-compose) to run AWX instead.
+
 [![Build Status](https://travis-ci.org/geerlingguy/awx-container.svg?branch=master)](https://travis-ci.org/geerlingguy/awx-container) [![](https://images.microbadger.com/badges/image/geerlingguy/awx_web.svg)](https://microbadger.com/images/geerlingguy/awx_web "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/image/geerlingguy/awx_task.svg)](https://microbadger.com/images/geerlingguy/awx_task "Get your own image badge on microbadger.com")
 
 This project is in its early stages. _There will be bugs!_
